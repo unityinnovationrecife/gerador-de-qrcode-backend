@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 import qrcode
 from io import BytesIO
 
@@ -11,7 +11,12 @@ def generate_qrcode():
         return jsonify({"error": "URL is required"}), 400
 
     # Gerar o QR Code
-    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+    qr = qrcode.QRCode(
+        version=2, 
+        error_correction=qrcode.constants.ERROR_CORRECT_L, 
+        box_size=10, 
+        border=4
+        )
     qr.add_data(data)
     qr.make(fit=True)
 
@@ -20,7 +25,7 @@ def generate_qrcode():
     img.save(img_io, "PNG")
     img_io.seek(0)
 
-    return send_file(img_io, mimetype="image/png", as_attachment=True, download_name="qrcode.png")
+    return send_file(img_io, mimetype="image/png", as_attachment=True, download_name="UNIR-qrcode.png")
 
 if __name__ == "__main__":
     app.run(debug=True)
