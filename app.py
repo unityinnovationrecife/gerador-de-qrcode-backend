@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request, send_file
 import qrcode
 from io import BytesIO
+from flask_cors import CORS    
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/generate_qrcode", methods=["POST"])
 def generate_qrcode():
@@ -29,3 +31,4 @@ def generate_qrcode():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
+
