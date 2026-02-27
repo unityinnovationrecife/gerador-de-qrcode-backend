@@ -28,9 +28,10 @@ def index():
         img.save(img_io, "PNG")
         img_io.seek(0)
         
-        return send_file(img_io, mimetype="image/png", as_attachment=True, download_name="qrcode.png")
+        return send_file(img_io, mimetype="image/png", as_attachment=True, download_name="UNIR-qrcode.png")
 
     return render_template("index.html")
 
 if __name__ == "__main__":
+
     app.run(debug=True)
