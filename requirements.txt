@@ -1,3 +1,4 @@
 Flask
-pip install flask-cors
+flask-cors
 qrcode[pil]
+
